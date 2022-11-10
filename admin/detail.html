@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>诊断历史管理</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="../lib/layui-v2.6.13/css/layui.css"
+      media="all"
+    />
+    <!-- <link rel="stylesheet" href="../css/public.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../lib/datatables.min.css" /> -->
+    <link rel="stylesheet" href="../css/style.css" media="all" />
+  </head>
+  <body>
+    <div class="layuimini-container">
+      <div class="layuimini-main">
+        <h3>患者基本信息</h3>
+
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="user_name"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">用户id</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="uid"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="gender"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="age"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身高</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="height"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">体重</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="weight"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">职业</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="job"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">受教育程度</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="edu"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">特殊人群</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="special"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="tel"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">原发肿瘤诊断</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="tumor"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">肿瘤转移情况</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="tumor_metastasis"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">肿瘤治疗方式</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="tumor_treatment"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">基础疾病</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="illness"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">肝功能</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="liver_function"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">肾功能</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="kidney_function"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">心功能</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="heart_function"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">过敏史</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="allergy"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况Q1</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_q1"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况Q2</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_q2"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况Q3</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_q3"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况Q4</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_q4"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况Q5</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_q5"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">身体状况得分</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="physical_score"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline"></div>
+        </div>
+        <h3>患者疼痛评估信息</h3>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛原因</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="causes"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛部位</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="body_parts"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛性质</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="character"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛强度</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="level"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛加重因素</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="aggravating_factors"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">疼痛缓解因素</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="relief_factors"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">爆发痛类型</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                name="breakout_type"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">爆发痛发作频率</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                name="breakout_freq"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+        </div>
+        <h3>患者既往用药信息</h3>
+        <div class="layui-form-item">
+          <label class="layui-form-label">既往用药</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="past_drugs"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <h3>患者决策信息</h3>
+        <div class="layui-form-item">
+          <label class="layui-form-label">既往用药存在问题及原因</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="previous_medication_issue"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">系统用药决策方案推荐</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="recmd"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../lib/layui-v2.6.13/layui.js" charset="utf-8"></script>
+  </body>
+</html>

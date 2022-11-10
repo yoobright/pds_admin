@@ -1,5 +1,76 @@
 pds_server = "http://localhost:8089";
 
+const decsionText = {
+    s1: {
+        1: "使用非甾体抗炎药或对乙酰氨基酚",
+        2: "使用强阿片类药物",
+        3: "使用弱阿片类药物",
+        4: "使用抗惊厥类药物或抗抑郁类药物",
+        5: "使用强阿片类药物+非甾体抗炎药",
+        6: "使用强阿片类药物+抗惊厥类药物/抗抑郁类药物",
+        7: "使用弱阿片类药物+抗惊厥类药物/抗抑郁类药物",
+    },
+    s2: {
+        1: "停用即释弱阿片",
+        2: "停用缓释弱阿片",
+        3: "停用即释弱阿片（增加缓释强阿片剂量）",
+        4: "停用任一缓释强阿片",
+        5: "增加原有即释弱阿片剂量或停用原有即释弱阿片，换用缓释阿片",
+        5.1: "停用原有即释弱阿片，换用缓释阿片",
+        6: "停用即释弱阿片，增加缓释弱阿片剂量或停用缓释弱阿片，增加即释弱阿片剂量或停用即释弱阿片及缓释弱阿片，换用强阿片",
+        6.1: "停用即释弱阿片，增加缓释弱阿片剂量，或停用即释弱阿片及缓释弱阿片，换用缓释强阿片",
+        6.2: "停用缓释弱阿片及即释弱阿片，增加强阿片",
+        6.3: "停用缓释弱阿片及即释弱阿片，增加缓释强阿片",
+        7: "增加原有即释强阿片剂量，或停用即释强阿片，换用缓释强阿片",
+        7.1: "停用即释强阿片，换用缓释强阿片",
+        7.2: "增加原有即释强阿片剂量，或原有即释强阿片不变，增加缓释强阿片",
+        7.3: "原有即释强阿片不变，增加缓释强阿片",
+        7.4: "停用任一即释强阿片，换用缓释强阿片或增加另一即释强阿片剂量",
+        8: "停用即释强阿片，增加（原有缓释强阿片+即释强阿片）剂量的25%~50%",
+        9: "停用缓释弱阿片和即释强阿片，换用缓释强阿片，或停用缓释弱阿片，增加原有即释强阿片剂量",
+        9.1: "停用缓释弱阿片和即释强阿片，换用缓释强阿片",
+        9.2: "停用缓释弱阿片，增加即释强阿片剂量，或停用缓释弱阿片，增加缓释强阿片",
+        9.3: "停用缓释弱阿片，增加缓释强阿片",
+        10: "增加原有缓释强阿片剂量的25%~50%",
+        11: "增加原有缓释弱阿片剂量或停用缓释弱阿片，增加强阿片",
+        11.1: "增加原有缓释弱阿片剂量或停用缓释弱阿片，换用缓释强阿片",
+        11.2: "停用缓释弱阿片，增加强阿片",
+        11.3: "停用缓释弱阿片，增加缓释强阿片",
+        12: "停用即释弱阿片，增加即释强阿片",
+        13: "停用即释强阿片，增加（原有缓释强阿片+即释强阿片）剂量的50%~100%",
+        14: "增加原有缓释强阿片剂量的同时，增加即释强阿片剂量",
+        15: "停用原有即释弱阿片，换用强阿片",
+        15.1: "停用原有即释弱阿片，换用缓释强阿片",
+        16: "增加原有缓释强阿片剂量的50%~100%",
+        17: "增加弱阿片",
+        18: "增加强阿片",
+    },
+};
+
+function genDecisionText(strData) {
+    const data = strData.split('#');
+    if (data.length !== 2) {
+        return '未知';
+    }
+
+    if (data[0] === "s1" || data[0] === "s2") {
+        return decsionText[data[0]][data[1]]
+    }
+
+    return "未知"
+}
+
+function genGenderText(strData) {
+    if (strData === "1") {
+        return "男"
+    }
+    if (strData === "2") {
+        return "女"
+    }
+
+    return ""
+}
+
 layui.use(["form", "table"], function () {
     var $ = layui.jquery,
         form = layui.form,
@@ -29,9 +100,9 @@ layui.use(["form", "table"], function () {
                     create_time: r.created_at,
                     user_name: r.patient_basic_info.user_name,
                     uid: r.patient_basic_info.uid,
-                    gender: r.patient_basic_info.gender,
+                    gender: genGenderText(r.patient_basic_info.gender),
                     age: r.patient_basic_info.age,
-                    recmd: r.recmd,
+                    recmd: genDecisionText(r.recmd),
                     uuid: r.uuid,
                 });
             }
@@ -98,10 +169,24 @@ layui.use(["form", "table"], function () {
         // const currentData = layui.table.cache["currentTableId"];
         const objIdx = parseInt($(obj.tr).attr("data-index"));
         if (obj.event === "detail") {
-            layer.confirm(`${data.uuid}，详情页面！！!`, function (index) {
-                // obj.del();
-                layer.close(index);
-            });
+            const index = layer.open({
+                title: "患者诊断详情",
+                type: 2,
+                shade: 0.2,
+                maxmin: true,
+                shadeClose: true,
+                area: ["100%", "100%"],
+                content: "detail.html",
+                btn: ["确定", "关闭"],
+              });
+              // $(window).on("resize", function () {
+              //   layer.full(index);
+              // });
+              return false;
+            // layer.confirm(`${data.uuid}，详情页面！！!`, function (index) {
+            //     // obj.del();
+            //     layer.close(index);
+            // });
         }
     });
 
