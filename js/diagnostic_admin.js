@@ -1,5 +1,3 @@
-pds_server = "http://localhost:8089";
-
 const decsionText = {
     s1: {
         1: "使用非甾体抗炎药或对乙酰氨基酚",
@@ -168,6 +166,8 @@ layui.use(["form", "table"], function () {
 
         // const currentData = layui.table.cache["currentTableId"];
         const objIdx = parseInt($(obj.tr).attr("data-index"));
+        const content_url = `detail.html?uuid=${data.uuid}`;
+
         if (obj.event === "detail") {
             const index = layer.open({
                 title: "患者诊断详情",
@@ -176,7 +176,7 @@ layui.use(["form", "table"], function () {
                 maxmin: true,
                 shadeClose: true,
                 area: ["100%", "100%"],
-                content: "detail.html",
+                content: content_url,
                 btn: ["确定", "关闭"],
               });
               // $(window).on("resize", function () {
