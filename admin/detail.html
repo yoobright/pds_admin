@@ -389,11 +389,68 @@
         </div>
         <h3>患者既往用药信息</h3>
         <div class="layui-form-item">
-          <label class="layui-form-label">既往用药</label>
+          <div class="layui-bl">既往用药</div>
+          <table lay-filter="prev_drug_table" id="prev_drug_table"></table>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">不良反应</label>
           <div class="layui-input-block">
             <input
               type="text"
-              name="past_drugs"
+              name="adverse_reaction"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">不良反应用药</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="adverse_reaction_drugs"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">您是否有时会忘记服药？</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="forget"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <label class="layui-form-label">您是否有时不注意服药？</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="carelessly"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <label class="layui-form-label"
+            >您自觉症状好转时是否会自行停药？</label
+          >
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="withdrawal"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <label class="layui-form-label"
+            >您服药后自觉症状更糟时是否曾停止服药？</label
+          >
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="bad_withdrawal"
               autocomplete="off"
               class="layui-input"
             />

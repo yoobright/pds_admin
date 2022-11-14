@@ -58,6 +58,7 @@ function genDecisionText(strData) {
     return "未知"
 }
 
+
 function genGenderText(strData) {
     if (strData === "1") {
         return "男"
