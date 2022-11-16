@@ -222,7 +222,8 @@ layui.use(["form", "table"], function () {
         $("[name='job']").val(basicInfo.job);
         $("[name='edu']").val(
             genTextFromDict(basicInfo.edu, $u.Text.eduDict));
-        $("[name='special']").val(basicInfo.special);
+        $("[name='special']").val(
+            genTextFromDict(basicInfo.special, $u.Text.specialDict));
         $("[name='tel']").val(basicInfo.tel);
         $("[name='tumor']").val(basicInfo.tumor);
         $("[name='tumor_metastasis']").val(basicInfo.tumor_metastasis);

@@ -49,6 +49,14 @@ utils.Text = class {
         },
     }
 
+    static specialDict = {
+        "1": "老年人(65岁及以上)",
+        "2": "儿童(14岁及以下)",
+        "3": "孕妇",
+        "4": "哺乳期妇女",
+        "5": "无",
+    }
+
     static eduDict = {
         "1": "小学及以下",
         "2": "初中",
@@ -66,7 +74,7 @@ utils.Text = class {
         "-1": "不详",
     }
 
-    static kidneyFunctionDcit = {
+    static kidneyFunctionDict = {
         "1": "正常",
         "2": "不全",
         "3": "严重不全",
