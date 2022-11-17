@@ -142,6 +142,9 @@ layui.use(["form", "table"], function () {
                     page: { theme: '#1e9fff' },
                 });
             },
+            refresh: function () {
+                location.reload();
+            }
         };
 
     $(".demoTable .layui-btn").on("click", function () {

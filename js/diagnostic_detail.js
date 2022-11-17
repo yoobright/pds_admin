@@ -182,6 +182,46 @@ function toYesNoText(strInput) {
     return "";
 }
 
+function genIssueText(strInput) {
+    if (strInput === "") {
+        return "无";
+    }
+    drugIssue = JSON.parse(strInput);
+    const previousIssueText = utils.Text.previousIssueText;
+    const res = [];
+    if (drugIssue.C1_3) {
+        res.push(
+            `${previousIssueText["C1.3"]}`
+        );
+    }
+
+    if (drugIssue.C1_4) {
+        res.push(
+            `${previousIssueText["C1.4"]}`
+        );
+    }
+
+    if (drugIssue.C1_5) {
+        res.push(
+            `${previousIssueText["C1.5"]}`
+        );
+    }
+
+    if (drugIssue.C3_2.length > 0) {
+        res.push(
+            `${previousIssueText["C3.2"]}`
+        );
+    }
+
+    if (drugIssue.C3_4.length > 0) {
+        res.push(
+            `${previousIssueText["C3.4"]}`
+        );
+    }
+
+    return res.join("、");
+
+}
 
 
 function genTextFromDict(strInput, dict) {
@@ -248,27 +288,27 @@ layui.use(["form", "table"], function () {
 
     function setPainAssessment(painAssessment) {
         $("[name='causes']").val(
-            genTextFromDict(painAssessment.causes, 
+            genTextFromDict(painAssessment.causes,
                 $u.Text.causesDict));
         $("[name='body_parts']").val(
             genTextFromDict(painAssessment.body_parts,
-                 $u.Text.bodyPartsDict));
+                $u.Text.bodyPartsDict));
         $("[name='pain_extra']").val(painAssessment.pain_extra)
         $("[name='character']").val(
-            genTextFromDict(painAssessment.character, 
+            genTextFromDict(painAssessment.character,
                 $u.Text.characterDict));
         $("[name='level']").val(painAssessment.level);
         $("[name='aggravating_factors']").val(
-            genTextFromDict(painAssessment.aggravating_factors, 
+            genTextFromDict(painAssessment.aggravating_factors,
                 $u.Text.aggravatingFactorsDict));
         $("[name='relief_factors']").val(
-            genTextFromDict(painAssessment.relief_factors, 
+            genTextFromDict(painAssessment.relief_factors,
                 $u.Text.relievingFactorsDict));
         $("[name='breakout_type']").val(
-            genTextFromDict(painAssessment.breakout_type, 
+            genTextFromDict(painAssessment.breakout_type,
                 $u.Text.breakoutTypeDict));
         $("[name='breakout_freq']").val(
-            genTextFromDict(painAssessment.breakout_freq, 
+            genTextFromDict(painAssessment.breakout_freq,
                 $u.Text.breakoutFreqDict));
     }
 
@@ -290,16 +330,16 @@ layui.use(["form", "table"], function () {
             ],
             data: tableData,
         });
-        $("[name='forget']").val(
-            toYesNoText(prevMedication.forget));
-        $("[name='carelessly']").val(
-            toYesNoText(prevMedication.carelessly));
-        $("[name='withdrawal']").val(
-            toYesNoText(prevMedication.withdrawal));
-        $("[name='bad_withdrawal']").val(
-            toYesNoText(prevMedication.bad_withdrawal));
+        $("[name='compliance_q1']").val(
+            toYesNoText(prevMedication.compliance_q1));
+        $("[name='compliance_q2']").val(
+            toYesNoText(prevMedication.compliance_q2));
+        $("[name='compliance_q3']").val(
+            toYesNoText(prevMedication.compliance_q3));
+        $("[name='compliance_q4']").val(
+            toYesNoText(prevMedication.compliance_q4));
         $("[name='adverse_reaction']").val(
-            genTextFromDict(prevMedication.adverse_reaction, 
+            genTextFromDict(prevMedication.adverse_reaction,
                 $u.Text.adverseReactionDict));
         $("[name='adverse_reaction_drugs']").val(
             prevMedication.adverse_reaction_drugs);
@@ -326,7 +366,9 @@ layui.use(["form", "table"], function () {
                 setPrevMedication(prevMedication);
             }
             const decision = res.decision_info;
-            $("[name='previous_medication_issue']").val(res.previous_medication_issue);
+
+            $("[name='previous_medication_issue']").val(
+                genIssueText(res.previous_medication_issue));
             $("[name='recmd']").val($u.Text.genDecisionText(res.recmd));
             if (decision) {
                 setDecision(decision);
