@@ -139,6 +139,7 @@ layui.use(["form", "table"], function () {
                     where: {
                         user_name: name.val(),
                     },
+                    page: { theme: '#1e9fff' },
                 });
             },
         };

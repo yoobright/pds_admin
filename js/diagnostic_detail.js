@@ -176,7 +176,7 @@ function genTabledata(drugTable) {
 function toYesNoText(strInput) {
     if (strInput === "1") {
         return "是";
-    } else if (strInput === "2") {
+    } else if (strInput === "0") {
         return "否";
     }
     return "";
@@ -253,6 +253,7 @@ layui.use(["form", "table"], function () {
         $("[name='body_parts']").val(
             genTextFromDict(painAssessment.body_parts,
                  $u.Text.bodyPartsDict));
+        $("[name='pain_extra']").val(painAssessment.pain_extra)
         $("[name='character']").val(
             genTextFromDict(painAssessment.character, 
                 $u.Text.characterDict));
@@ -302,6 +303,9 @@ layui.use(["form", "table"], function () {
                 $u.Text.adverseReactionDict));
         $("[name='adverse_reaction_drugs']").val(
             prevMedication.adverse_reaction_drugs);
+
+        // show info
+        $("#prev_medication_info").show();
     }
 
     // query get data from uuid
