@@ -276,11 +276,16 @@ layui.use(["form", "table"], function () {
         $("[name='cardiac_function']").val(
             genTextFromDict(basicInfo.cardiac_function, $u.Text.cardiacFunctionDict));
         $("[name='allergy']").val(basicInfo.allergy);
-        $("[name='physical_q1']").val(basicInfo.physical_q1);
-        $("[name='physical_q2']").val(basicInfo.physical_q2);
-        $("[name='physical_q3']").val(basicInfo.physical_q3);
-        $("[name='physical_q4']").val(basicInfo.physical_q4);
-        $("[name='physical_q5']").val(basicInfo.physical_q5);
+        $("[name='physical_q1']").val(
+            genTextFromDict(basicInfo.physical_q1, $u.Text.physicalQ1Dict));
+        $("[name='physical_q2']").val(
+            genTextFromDict(basicInfo.physical_q2, $u.Text.physicalQ2Dict));
+        $("[name='physical_q3']").val(
+            genTextFromDict(basicInfo.physical_q3, $u.Text.physicalQ3Dict));
+        $("[name='physical_q4']").val(
+            genTextFromDict(basicInfo.physical_q4, $u.Text.physicalQ4Dict));
+        $("[name='physical_q5']").val(
+            genTextFromDict(basicInfo.physical_q5, $u.Text.physicalQ5Dict));
         $("[name='physical_score']").val(basicInfo.physical_score);
 
     }
