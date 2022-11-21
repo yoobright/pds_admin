@@ -219,8 +219,9 @@ utils.Text = class {
     }
 
     static breakoutFreqDict = {
-        "1": "＜3",
-        "2": "≥3",
+        "1": "≥3",
+        "2": "<3",
+        "3": "无",
     }
 
     static adverseReactionDict = {
@@ -323,6 +324,23 @@ utils.Text = class {
         "L8": "利尿用药",
         "L9": "胃痉挛用药",
     };
+
+    static genTextFromDict(strInput, dict, seq=",") {
+        if (strInput === null) {
+            return "";
+        }
+        const inputList = strInput.split(seq);
+        if (inputList.length === 0) {
+            return "";
+        }
+        const res = []
+        for (const input of inputList) {
+            if (input in dict) {
+                res.push(dict[input]);
+            }
+        }
+        return res.join("、");
+    }
 
 }
 

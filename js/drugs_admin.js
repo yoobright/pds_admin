@@ -1,46 +1,20 @@
 var $u = utils || require('./utils');
 
+genTextFromDict = $u.Text.genTextFromDict;
 
-function genTextFromDict(strInput, dict, seq=",") {
-    if (strInput === null) {
-        return "";
-    }
-    const inputList = strInput.split(seq);
-    if (inputList.length === 0) {
-        return "";
-    }
-    res = []
-    for (const input of inputList) {
-        if (input in dict) {
-            res.push(dict[input]);
-        }
-    }
-    return res.join("、");
-}
 
 layui.use(["form", "table"], function () {
     var $ = layui.jquery,
         form = layui.form,
         table = layui.table;
 
-    const tableData = [];
-    // const blankRowData = {
-    //   create_time: "",
-    //   user_name: "",
-    //   uid: "",
-    //   gender: "",
-    //   age: "",
-    //   recmd: "",
-    //   uuid: ""
-    // };
-    // const tableMax = 1;
-    table.render({
-        elem: "#drug-table",
-        // url: "../api/table.json",
+    // const tableData = [];
+
+    $.ajax({
         url: `${pds_server}/drugs`,
-        parseData: function (res) {
-            //res 即为原始返回的数据
-            console.log(res);
+        type: "get",
+        dataType: "json",
+        success: function (res) {
             const data = [];
             for (const r of res) {
                 data.push({
@@ -53,55 +27,55 @@ layui.use(["form", "table"], function () {
                     exce_freq: r.exce_freq,
                 });
             }
-            console.log(data);
+           
 
-            return {
-                code: 0,
-                // msg: "",
-                // count: 1,
+            table.render({
+                elem: "#drug-table",
                 data: data,
-            };
-        },
+                // url: "../api/table.json",
+              
+        
+                toolbar: "#toolbarDemo",
+                defaultToolbar: [
+                    "filter",
+                    "exports",
+                    "print",
+                    {
+                        title: "提示",
+                        layEvent: "LAYTABLE_TIPS",
+                        icon: "layui-icon-tips",
+                    },
+                ],
+                // width: 1600,
+                cols: [
+                    [
+        
+                        { field: "drug_id", width: 100, title: "药物ID", sort: true},
+                        { field: "drug_name", width: 320, title: "药物名称" },
+                        { field: "spec", width: 120, title: "药物容量" },
+                        { field: "unit", width: 80, title: "药物剂量单位" },
+                        { field: "category", width: 320, title: "药物种类" },
+                        { field: "high_dose", width: 120, title: "最大剂量" },
+                        { field: "exce_freq", width: 120, title: "最大频次" },
+                        // {
+                        //     title: "操作",
+                        //     minWidth: 80,
+                        //     toolbar: "#currentTableBar",
+                        //     align: "center",
+                        //     fixed: "right",
+                        // },
+                    ],
+                ],
+                limits: [10, 20, 50, 100, 200, 500],
+                limit: 20,
+                page: { theme: '#1e9fff' },
+                skin: "row",
+                even: true,
+                totalRow: true,
+                id: "testReload"
+            });
 
-        toolbar: "#toolbarDemo",
-        defaultToolbar: [
-            "filter",
-            "exports",
-            "print",
-            {
-                title: "提示",
-                layEvent: "LAYTABLE_TIPS",
-                icon: "layui-icon-tips",
-            },
-        ],
-        // width: 1600,
-        cols: [
-            [
-
-                { field: "drug_id", width: 120, title: "药物ID", sort: true,},
-                { field: "drug_name", width: 320, title: "药物名称" },
-                { field: "spec", width: 120, title: "药物容量" },
-                { field: "unit", width: 80, title: "药物剂量单位" },
-                { field: "category", width: 320, title: "药物种类" },
-                { field: "high_dose", width: 120, title: "最大剂量" },
-                { field: "exce_freq", width: 120, title: "最大频次" },
-                // {
-                //     title: "操作",
-                //     minWidth: 80,
-                //     toolbar: "#currentTableBar",
-                //     align: "center",
-                //     fixed: "right",
-                // },
-            ],
-        ],
-        data: tableData,
-        limits: [10, 20, 50, 100],
-        limit: 10,
-        page: { theme: '#1e9fff' },
-        skin: "row",
-        even: true,
-        totalRow: true,
-        id: "testReload"
+        }
     });
 
     table.on("tool(currentTableFilter)", function (obj) {

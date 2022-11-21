@@ -1,5 +1,7 @@
 var $u = utils || require('./utils');
 
+genTextFromDict = $u.Text.genTextFromDict;
+
 //  get prarameter from url
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -224,22 +226,7 @@ function genIssueText(strInput) {
 }
 
 
-function genTextFromDict(strInput, dict) {
-    if (strInput === null) {
-        return "";
-    }
-    const inputList = strInput.split(",");
-    if (inputList.length === 0) {
-        return "";
-    }
-    res = []
-    for (const input of inputList) {
-        if (input in dict) {
-            res.push(dict[input]);
-        }
-    }
-    return res.join("、");
-}
+
 
 
 
