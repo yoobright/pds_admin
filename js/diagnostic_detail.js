@@ -305,7 +305,18 @@ layui.use(["form", "table"], function () {
     }
 
     function setDecision(decision) {
-
+        const tableData = genTabledata(decision.drug_table);
+        table.render({
+            elem: "#drug_table",
+            cols: [
+                [
+                    { field: "name", width: 320, title: "用药名称" },
+                    { field: "dose", width: 120, title: "单次用药剂量" },
+                    { field: "freq", width: 120, title: "用药频次" },
+                ],
+            ],
+            data: tableData,
+        });
     }
 
     function setPrevMedication(prevMedication) {

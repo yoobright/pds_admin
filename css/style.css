@@ -13,3 +13,14 @@ h3 {
     margin-top: 15px;
     font-weight: 600;
 }
+
+.layui-bl {
+    position: relative;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 80px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}

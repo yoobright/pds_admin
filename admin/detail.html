@@ -401,11 +401,13 @@
             </div>
           </div>
         </div>
-        <div id="prev_medication_info" style="display: none;">
+        <div id="prev_medication_info" style="display: none">
           <h3>患者既往用药信息</h3>
           <div class="layui-form-item">
-            <div class="layui-bl" style="margin-left: 20px;">既往镇痛用药</div>
-            <table lay-filter="prev_drug_table" id="prev_drug_table"></table>
+            <div class="layui-bl">既往镇痛用药</div>
+            <div class="layui-input-block">
+              <table lay-filter="prev_drug_table" id="prev_drug_table"></table>
+            </div>
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">不良反应</label>
@@ -494,6 +496,12 @@
                 autocomplete="off"
                 class="layui-input"
               />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-bl">用药列表</div>
+            <div class="layui-input-block">
+              <table lay-filter="drug_table" id="drug_table"></table>
             </div>
           </div>
         </div>
