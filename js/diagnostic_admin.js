@@ -135,11 +135,11 @@ layui.use(["form", "table"], function () {
                 table.reload("testReload", {
                     page: {
                         curr: 1, //重新从第 1 页开始
+                        theme: '#1e9fff' 
                     },
                     where: {
                         user_name: name.val(),
                     },
-                    page: { theme: '#1e9fff' },
                 });
             },
             refresh: function () {
