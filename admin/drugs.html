@@ -32,8 +32,13 @@
               autocomplete="off"
             />
           </div>
-          <button class="layui-btn layui-btn-normal" data-type="reload">搜索</button>
-          <button class="layui-btn layui-btn-warm" data-type="refresh">刷新</button>
+          <button class="layui-btn layui-btn-normal" data-type="reload">
+            搜索
+          </button>
+          <button class="layui-btn layui-btn-warm" data-type="refresh">
+            刷新
+          </button>
+          <button class="layui-btn" data-type="add_drug">增加</button>
         </div>
 
         <table
@@ -50,6 +55,144 @@
           >
         </script>
       </div>
+    </div>
+    <div
+      id="drug_add_dialog"
+      style="margin: 20px; margin-right: 40px; display: none"
+    >
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <label class="layui-form-label">药物ID</label>
+          <div class="layui-input-inline">
+            <input
+              type="number"
+              name="drug_id"
+              required
+              lay-verify="required"
+              placeholder="请输入药物ID"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">药物名称</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="drug_name"
+              required
+              lay-verify="required"
+              placeholder="请输入药物名称"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">药物容量</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="spec"
+              required
+              lay-verify="required"
+              placeholder="请输入药物容量"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">药物剂量单位</label>
+          <div class="layui-input-block">
+            <!-- <select name="unit" required lay-verify="required">
+              <option value=""></option>
+              <option value="mg">mg</option>
+              <option value="ml">ml</option>
+              <option value="片">片</option>
+            </select> -->
+            <input
+              type="radio"
+              required
+              lay-verify="required"
+              name="unit"
+              value="mg"
+              title="mg"
+            />
+            <input
+              type="radio"
+              required
+              lay-verify="required"
+              name="unit"
+              value="ml"
+              title="ml"
+            />
+            <input
+              type="radio"
+              required
+              lay-verify="required"
+              name="unit"
+              value="片"
+              title="片"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">药物种类</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="category"
+              required
+              lay-verify="required"
+              placeholder="请输入药物种类"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">最大剂量</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="high_dose"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <label class="layui-form-label">最大频次</label>
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="exce_freq"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button
+              class="layui-btn"
+              lay-submit
+              lay-filter="formAdd"
+              id="addSubmit"
+              style="display: none"
+            >
+              立即提交
+            </button>
+            <button
+              type="reset"
+              class="layui-btn layui-btn-primary"
+              id="addReset"
+            >
+              重置
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
     <script src="../lib/layui-v2.6.13/layui.js" charset="utf-8"></script>
     <script src="../js/config.js" charset="utf-8"></script>

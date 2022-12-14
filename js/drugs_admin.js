@@ -134,75 +134,6 @@ layui.use(["form", "table"], function () {
         id: "testReload"
     });
 
-    // $.ajax({
-    //     url: `${pds_server}/drugs`,
-    //     type: "get",
-    //     dataType: "json",
-    //     success: function (res) {
-    //         const data = [];
-    //         for (const r of res.data) {
-    //             data.push({
-    //                 drug_id: r.drug_id,
-    //                 drug_name: r.drug_name,
-    //                 spec: r.spec,
-    //                 unit: r.unit,
-    //                 category: genTextFromDict(r.category, $u.Text.drugCategoryText, "/"),
-    //                 high_dose: r.high_dose,
-    //                 exce_freq: r.exce_freq,
-    //             });
-    //         }
-
-
-    //         tableIns = table.render({
-    //             elem: "#drug-table",
-    //             data: data,
-    //             // url: "../api/table.json",
-
-
-    //             toolbar: "#toolbarDemo",
-    //             defaultToolbar: [
-    //                 "filter",
-    //                 "exports",
-    //                 "print",
-    //                 {
-    //                     title: "提示",
-    //                     layEvent: "LAYTABLE_TIPS",
-    //                     icon: "layui-icon-tips",
-    //                 },
-    //             ],
-    //             // width: 1600,
-    //             cols: [
-    //                 [
-
-    //                     { field: "drug_id", width: 100, title: "药物ID", sort: true},
-    //                     { field: "drug_name", width: 320, title: "药物名称" },
-    //                     { field: "spec", width: 120, title: "药物容量" },
-    //                     { field: "unit", width: 80, title: "药物剂量单位" },
-    //                     { field: "category", width: 320, title: "药物种类" },
-    //                     { field: "high_dose", width: 120, title: "最大剂量" },
-    //                     { field: "exce_freq", width: 120, title: "最大频次" },
-    //                     // {
-    //                     //     title: "操作",
-    //                     //     minWidth: 80,
-    //                     //     toolbar: "#currentTableBar",
-    //                     //     align: "center",
-    //                     //     fixed: "right",
-    //                     // },
-    //                 ],
-    //             ],
-    //             limits: [10, 20, 50, 100, 200, 500],
-    //             limit: 20,
-    //             page: { theme: '#1e9fff' },
-    //             skin: "row",
-    //             even: true,
-    //             totalRow: true,
-    //             id: "testReload"
-    //         });
-
-    //     }
-    // });
-
-
 
     table.on("tool(currentTableFilter)", function (obj) {
         const data = obj.data;
@@ -256,11 +187,42 @@ layui.use(["form", "table"], function () {
             },
             refresh: function () {
                 location.reload();
+            },
+            add_drug: function () {
+                console.log("add");
+                const dialogId = "#drug_add_dialog";
+                layer.open({
+                    type: 1,
+                    title: '添加药品',
+                    content: $(dialogId),
+                    area: ['800px', '350px'], //自定义文本域宽高
+                    success: function(layero, index){
+                        $("#addReset").click();
+                    },
+                    btn: ['确定', '取消'],
+                    yes: function (index, layero) {
+                        console.log("yes");
+                        // $(dialogId).submit();
+                        $("#addSubmit").click();
+                        // layer.close(index);
+                        
+                    },
+                    btn2: function(index, layero){
+                        console.log("no");
+                        layer.close(index); 
+                    }
+                });
+                
             }
         };
 
     $(".demoTable .layui-btn").on("click", function () {
         var type = $(this).data("type");
         active[type] ? active[type].call(this) : "";
+    });
+
+    form.on('submit(formAdd)', function(data){
+        layer.msg(JSON.stringify(data.field));
+        return false;
     });
 });

@@ -226,10 +226,6 @@ function genIssueText(strInput) {
 }
 
 
-
-
-
-
 layui.use(["form", "table"], function () {
     var $ = layui.jquery,
         form = layui.form,
@@ -243,7 +239,7 @@ layui.use(["form", "table"], function () {
         $("[name='user_name']").val(basicInfo.user_name);
         $("[name='uid']").val(basicInfo.uid);
         $("[name='gender']").val($u.Text.genGenderText(basicInfo.gender));
-        $("[name='age']").val(basicInfo.age);
+        $("[name='age']").val(parseInt(basicInfo.age));
         $("[name='height']").val(basicInfo.height);
         $("[name='weight']").val(basicInfo.weight);
         $("[name='job']").val(basicInfo.job);
