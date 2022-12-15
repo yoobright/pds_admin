@@ -49,8 +49,9 @@ function genCategoryEle(category) {
 }
 
 
-layui.use(["form", "table"], function () {
+layui.use(["transfer", "form", "table"], function () {
     var $ = layui.jquery,
+        transfer = layui.transfer,
         form = layui.form,
         table = layui.table;
 
@@ -196,8 +197,10 @@ layui.use(["form", "table"], function () {
                     title: '添加药品',
                     content: $(dialogId),
                     area: ['800px', '350px'], //自定义文本域宽高
-                    success: function(layero, index){
+                    success: function (layero, index) {
                         $("#addReset").click();
+                        $("#highDoseUnit").text("");
+                        $("#drug_category_input").prop("title", "请选择药物种类");
                     },
                     btn: ['确定', '取消'],
                     yes: function (index, layero) {
@@ -205,14 +208,14 @@ layui.use(["form", "table"], function () {
                         // $(dialogId).submit();
                         $("#addSubmit").click();
                         // layer.close(index);
-                        
+
                     },
-                    btn2: function(index, layero){
-                        console.log("no");
-                        layer.close(index); 
+                    btn2: function (index, layero) {
+                        // console.log("no");
+                        layer.close(index);
                     }
                 });
-                
+
             }
         };
 
@@ -221,8 +224,54 @@ layui.use(["form", "table"], function () {
         active[type] ? active[type].call(this) : "";
     });
 
-    form.on('submit(formAdd)', function(data){
-        layer.msg(JSON.stringify(data.field));
-        return false;
+
+    form.on("radio(drugUnit)", function (data) {
+        const unit = `${data.value}/d`;
+        console.log(unit);
+        $("#highDoseUnit").text(unit);
+    });
+
+    const categoryData = Object.keys(utils.Text.drugCategoryText).map((k) => {
+        return { value: k, title: utils.Text.drugCategoryText[k] };
+    });
+
+    transfer.render({
+        elem: "#durg_category_select",
+        title: ["候选类别", "选择类别"],
+        showSearch: true,
+        data: categoryData,
+        id: "keyCategorySelect",
+    });
+
+    $("#category-edit").click(function () {
+        const dialogId = "#drug_category_dialog";
+        layer.open({
+            type: 1,
+            title: '药品种类',
+            content: $(dialogId),
+            // area: ['800px', '350px'], //自定义文本域宽高
+            success: function (layero, index) {
+                const category = $("#drug_category_input").val();
+                const categoryArr = category.split("/");
+                transfer.reload("keyCategorySelect", {
+                    value: categoryArr,
+                });
+            },
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                const getData = transfer.getData("keyCategorySelect");
+                const category = getData.map((d) => d.value).join("/");
+                const title = getData.map((d) => d.title).join("/");
+                $("#drug_category_input").val(category);
+                $("#drug_category_input").prop("title", title);
+                console.log(getData);
+                console.log("yes");
+                layer.close(index);
+            },
+            btn2: function (index, layero) {
+                layer.close(index);
+            }
+        });
+
     });
 });

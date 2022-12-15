@@ -116,6 +116,7 @@
               type="radio"
               required
               lay-verify="required"
+              lay-filter="drugUnit"
               name="unit"
               value="mg"
               title="mg"
@@ -124,6 +125,7 @@
               type="radio"
               required
               lay-verify="required"
+              lay-filter="drugUnit"
               name="unit"
               value="ml"
               title="ml"
@@ -132,6 +134,7 @@
               type="radio"
               required
               lay-verify="required"
+              lay-filter="drugUnit"
               name="unit"
               value="片"
               title="片"
@@ -140,28 +143,40 @@
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">药物种类</label>
-          <div class="layui-input-block">
-            <input
-              type="text"
-              name="category"
-              required
-              lay-verify="required"
-              placeholder="请输入药物种类"
-              autocomplete="off"
-              class="layui-input"
-            />
-          </div>
-        </div>
-        <div class="layui-form-item">
-          <label class="layui-form-label">最大剂量</label>
           <div class="layui-input-inline">
             <input
               type="text"
+              name="category"
+              readonly
+              id="drug_category_input"
+              required
+              lay-verify="required"
+              placeholder="通过编辑按钮选择药物种类"
+              autocomplete="off"
+              class="layui-input"
+              title="First Name"
+            />
+          </div>
+          <button type="button" class="layui-btn" id="category-edit">
+            编辑
+          </button>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">最大剂量</label>
+          <div class="layui-input-inline" style="max-width: 100px">
+            <input
+              type="number"
               name="high_dose"
               autocomplete="off"
               class="layui-input"
             />
           </div>
+          <div
+            class="layui-form-mid"
+            id="highDoseUnit"
+            style="min-width: 30px"
+          ></div>
+
           <label class="layui-form-label">最大频次</label>
           <div class="layui-input-inline">
             <input
@@ -193,6 +208,10 @@
           </div>
         </div>
       </form>
+    </div>
+
+    <div id="drug_category_dialog" style="display: none">
+      <div id="durg_category_select" class="demo-transfer"></div>
     </div>
     <script src="../lib/layui-v2.6.13/layui.js" charset="utf-8"></script>
     <script src="../js/config.js" charset="utf-8"></script>
