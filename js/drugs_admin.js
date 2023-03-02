@@ -206,7 +206,8 @@ layui.use(["transfer", "form", "table"], function () {
                     yes: function (index, layero) {
                         console.log("yes");
                         // $(dialogId).submit();
-                        $("#addSubmit").click();
+                        layer.msg("暂未实现！！！")
+                        // $("#addSubmit").click();
                         // layer.close(index);
 
                     },
@@ -237,7 +238,7 @@ layui.use(["transfer", "form", "table"], function () {
 
     transfer.render({
         elem: "#durg_category_select",
-        title: ["候选类别", "选择类别"],
+        title: ["候选类别", "已选择类别"],
         showSearch: true,
         data: categoryData,
         id: "keyCategorySelect",
