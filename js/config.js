@@ -1,2 +1,2 @@
-pds_server = "https://localhost:8089";
+pds_server = "https://yoobright.top:8089";
 
