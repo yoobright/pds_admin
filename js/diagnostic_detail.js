@@ -298,6 +298,12 @@ layui.use(["form", "table"], function () {
         $("[name='breakout_freq']").val(
             genTextFromDict(painAssessment.breakout_freq,
                 $u.Text.breakoutFreqDict));
+        $("[name='p_illness']").val(
+            genTextFromDict(painAssessment.illness,
+                $u.Text.illnessDict));
+        $("[name='symptom']").val(
+            genTextFromDict(painAssessment.symptom,
+                $u.Text.symptomDict));
     }
 
     function setDecision(decision) {
