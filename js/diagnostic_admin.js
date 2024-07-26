@@ -34,6 +34,7 @@ layui.use(["form", "table"], function () {
                     age: r.patient_basic_info.age,
                     recmd: $u.Text.genDecisionText(r.recmd),
                     uuid: r.uuid,
+                    request_ip: $u.Text.genIPText(r.request_ip)
                 });
             }
             console.log(data);
@@ -63,7 +64,7 @@ layui.use(["form", "table"], function () {
                 // { type: "checkbox", width: 50 },
                 {
                     field: "create_time",
-                    width: 320,
+                    width: 220,
                     title: "提交时间",
                     sort: true,
                 },
@@ -73,6 +74,7 @@ layui.use(["form", "table"], function () {
                 { field: "age", width: 80, title: "年龄" },
                 { field: "recmd", width: 400, title: "推荐决策" },
                 { field: "uuid", width: 320, title: "uuid", hide: true },
+                { field: "request_ip", width: 140, title: "请求IP"},
                 {
                     title: "操作",
                     minWidth: 80,

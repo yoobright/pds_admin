@@ -396,6 +396,14 @@ utils.Text = class {
         return res.join("、");
     }
 
+    
+    static genIPText(strData) {
+        if (strData !== null) {
+            return strData;
+        }
+        return "";
+    }
+
 }
 
 
